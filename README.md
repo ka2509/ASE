@@ -1,56 +1,54 @@
 https://www.kaggle.com/code/kuangank/ase-fighting
 
-As part of this project, I aim to develop an automated essay scoring model to streamline
-the grading process for student essays. The goal is to leverage natural language 
-processing and machine learning techniques to provide timely and accurate feedback to 
-students while reducing the burden on educators.
+# Automated Essay Scoring Model
 
-Selecting datasets: I used the following datasets:
- • Competition dataset.
- • Kononenko’s Notebook to import pyspellchecker libraries in no-internet mode.
-Phase1: 
-Dataset preparation: 
-First I defined target variable and
-encode it using LabelEncoder. Then I tokenize each essay
-splitting text into individual words.
-I tried to tokenize by a simple way like: split the essay and
-scan each word if it is alpha and add it into a list. But the
-problem is it can not scan words that contain punctuation,
-such as contractions like ”don’t”, words before and after a
-dot and words enclosed in quotation marks.
-So I decided to use the word tokenize function from the nltk
-library. This method took the kernel a long time to execute
-but resulted in better accuracy.
-Phase2: Extract features: 
-I listed some featured that I can extract
-from the essay such as: total words, total sentences, total
-length, total stopwords, total spelling errors, average word
-length, lexical diversity.
-After some tests and entries with better score, I decided
-to keep: total words, total sentences, total spelling errors,
-average word length and lexical diversity as main features.
-At this phase, I got problem while counting the total spelling
-errors. The rule of the competition is that we need to submit
-the code in the no-internet mode. So I can not install the
-library to use it for spell checking tasks. So I had to add
-Kononenko’s Notebook as a data source to my main notebook.
-And as I mentioned above, I used a function word tokenize to
-tokenize the essay. Although the complexity of this function
-is quite large, it tokenized quite accurately. So in this step,
-spell checker checked the number of misspelled words more
-accurately.
-Phase3: Split data into train and validation sets: 
-I split the training dataset into training and validation dataset with adjusted parameters.
-Phase4: Train model: 
-Experiment with various machine learning
-algorithms such as Gradient Boosting, Random Forest, and
-Neural Networks to identify the best-performing model.
-And finally, I used Gradient Boosting. Train the selected
-model on the preprocessed training data to learn patterns and
-relationships between essay features and scores.
-Phase5: Model Evaluation: 
-Evaluate the model’s performance using
-metrics like Cohen’s Kappa Score, accuracy, and mean squared
-error. Then create visualizations such as scatter plots and
-histograms to compare actual vs. predicted scores and gain
-insights into the model’s performance
+This project aims to develop an automated essay scoring model to streamline the grading process for student essays. The goal is to leverage natural language processing and machine learning techniques to provide timely and accurate feedback to students while reducing the burden on educators.
+
+## Datasets
+
+The following datasets were used in this project:
+- Competition dataset
+- Kononenko’s Notebook to import pyspellchecker libraries in no-internet mode
+
+## Project Phases
+
+### Phase 1: Dataset Preparation
+- **Define Target Variable:** The target variable was defined and encoded using LabelEncoder.
+- **Tokenization:** 
+  - Initial tokenization involved splitting the essay into individual words. However, this method did not handle punctuation well (e.g., contractions like "don’t", words before and after punctuation, and words enclosed in quotation marks).
+  - The `word_tokenize` function from the `nltk` library was used for better accuracy, despite its longer execution time.
+
+### Phase 2: Feature Extraction
+- Various features were considered, such as:
+  - Total words
+  - Total sentences
+  - Total length
+  - Total stopwords
+  - Total spelling errors
+  - Average word length
+  - Lexical diversity
+- After testing, the following features were retained:
+  - Total words
+  - Total sentences
+  - Total spelling errors
+  - Average word length
+  - Lexical diversity
+- **Spelling Errors Count:** 
+  - Due to the no-internet rule of the competition, the `pyspellchecker` library was included via Kononenko’s Notebook as a data source.
+  - The `word_tokenize` function was used for accurate tokenization, aiding the spell checker in counting misspelled words more accurately.
+
+### Phase 3: Data Splitting
+- The training dataset was split into training and validation datasets with adjusted parameters.
+
+### Phase 4: Model Training
+- Various machine learning algorithms were experimented with, including Gradient Boosting, Random Forest, and Neural Networks.
+- Gradient Boosting was selected as the best-performing model.
+- The model was trained on the preprocessed training data to learn patterns and relationships between essay features and scores.
+
+### Phase 5: Model Evaluation
+- The model’s performance was evaluated using metrics like Cohen’s Kappa Score, accuracy, and mean squared error.
+- Visualizations such as scatter plots and histograms were created to compare actual vs. predicted scores and to gain insights into the model’s performance.
+
+## Conclusion
+This project demonstrates the development of an automated essay scoring model that effectively leverages natural language processing and machine learning techniques. The model provides accurate feedback to students, aiding in their learning process while reducing the workload for educators.
+
